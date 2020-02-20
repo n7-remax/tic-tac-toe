@@ -18,11 +18,11 @@ class Game extends Component {
         }
     }
 
-    jumpTo(step){
-        this.state({
+    jumpTo(step) {
+        this.setState({
             stepNumber: step,
-            xIsNext: (step % 2) === 0,
-        })
+            xIsNext: (step % 2) === 0
+        });
     }
 
     handleClick(i) {
@@ -44,7 +44,7 @@ class Game extends Component {
 
     render() {
         const history = this.state.history;
-        const current = history[history.length - 1];
+        const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
