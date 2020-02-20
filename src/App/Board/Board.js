@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
 import Square from '../Square/Square';
+import calculateWinner from './calculateWinner';
 
 import './board.css'
 
 class Board extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             squares: Array(9).fill(null),
@@ -21,16 +22,22 @@ class Board extends Component {
             xIsNext: !this.state.xIsNext,
         });
     }
-    
+
     renderSquare(i) {
-        return <Square 
-        value={this.state.squares[i]} 
-        onClick={()=> this.handleClick(i)} 
+        return <Square
+            value={this.state.squares[i]}
+            onClick={() => this.handleClick(i)}
         />;
     }
 
     render() {
-        const status = 'Next is: ' + (this.state.xIsNext ? 'X' : 'O');
+        const winner = calculateWinner(this.state.squares);
+        let status;
+        if (winner) {
+            status = 'Winner ' + winner;
+        } else {
+            status = 'Next is: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
 
         return (
             <div>
