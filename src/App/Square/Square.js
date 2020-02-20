@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 
+import './square.css'
+
 class Square extends Component {
     render() {
       return (
@@ -11,4 +13,3 @@ class Square extends Component {
   }
 
   export default Square
-  
